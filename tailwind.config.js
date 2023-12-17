@@ -11,5 +11,6 @@ module.exports = {
       },
     }
   },
+  safelist: ['disabled:opacity-50'],
   plugins: [],
 }

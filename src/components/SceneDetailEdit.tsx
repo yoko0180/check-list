@@ -51,6 +51,8 @@ const SceneDetailEdit: React.FC<SceneDetailProps> = ({ scene }) => {
 
       <div className="p-2">
         {scene.items.map((item) => {
+          const disabledUp = scene.items.findIndex(i => i.id === item.id) === 0
+          const disabledDown = scene.items.findIndex(i => i.id === item.id) === scene.items.length - 1
           return (
             <div key={item.id} className="m-2 p-2 border rounded flex items-center ">
               <input className="border rounded p-1" type="text" value={item.text} onChange={(e) => {
@@ -58,11 +60,29 @@ const SceneDetailEdit: React.FC<SceneDetailProps> = ({ scene }) => {
                 const newScene = { ...scene, items: newItems };
                 setScenes((scenes) => scenes.map((s) => (s.id === scene.id ? newScene : s)));
               }} />
-              <button className="mx-2 bg-red-900 p-2 rounded" onClick={() => {
+              <button className="mx-1 bg-red-900 p-2 rounded" onClick={() => {
                 const newItems = scene.items.filter(i => i.id !== item.id);
                 const newScene = { ...scene, items: newItems };
                 setScenes((scenes) => scenes.map((s) => (s.id === scene.id ? newScene : s)));
-              }}>削除</button>
+              }}>削</button>
+              <button disabled={disabledUp} className={`mx-1 bg-blue-500 p-2 rounded ${disabledUp ? 'disabled:opacity-50' : ''}`} onClick={() => {
+                const index = scene.items.findIndex(i => i.id === item.id);
+                if (index > 0) {
+                  const newItems = [...scene.items];
+                  [newItems[index - 1], newItems[index]] = [newItems[index], newItems[index - 1]];
+                  const newScene = { ...scene, items: newItems };
+                  setScenes((scenes) => scenes.map((s) => (s.id === scene.id ? newScene : s)));
+                }
+              }}>上</button>
+              <button disabled={disabledDown} className={`mx-1 bg-blue-500 p-2 rounded ${disabledDown ? 'disabled:opacity-50' : ''}`} onClick={() => {
+                const index = scene.items.findIndex(i => i.id === item.id);
+                if (index < scene.items.length - 1) {
+                  const newItems = [...scene.items];
+                  [newItems[index], newItems[index + 1]] = [newItems[index + 1], newItems[index]];
+                  const newScene = { ...scene, items: newItems };
+                  setScenes((scenes) => scenes.map((s) => (s.id === scene.id ? newScene : s)));
+                }
+              }}>下</button>
             </div>
           )
         })}
