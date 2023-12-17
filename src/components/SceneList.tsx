@@ -1,13 +1,19 @@
 import { useAtom } from "jotai"
 import { ItemView, Scene } from "../types"
-import { scenesState } from "./Main"
+import { scenesState, selectedSceneState } from "./Main"
 
 export const SceneList: React.FC<{
 
 }> = ({  }) => {
   const [scenes, setScenes] = useAtom(scenesState)
+  const [, setSelectedScene] = useAtom(selectedSceneState)
+  
   const deleteAll = () => {
     setScenes([])
+  }
+
+  const handleSceneClick = (scene: Scene) => {
+    setSelectedScene(scene)
   }
 
   return (
@@ -21,7 +27,7 @@ export const SceneList: React.FC<{
       {scenes.map((item) => {
         return (
           <div key={item.id} className="m-2 border rounded flex items-center ">
-            <button className="bg-red-900 p-2 m-1 rounded w-full" >
+            <button className="bg-red-900 p-2 m-1 rounded w-full" onClick={() => handleSceneClick(item)}>
               {item.text}
             </button>
           </div>

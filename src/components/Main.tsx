@@ -5,15 +5,18 @@ import { atomWithStorage } from "jotai/utils"
 import { atom, useAtom, useSetAtom, useAtomValue } from "jotai"
 import { Now } from "./Now"
 import { AddScene } from "./AddScene"
+import SceneDetail from './SceneDetail';
 
 export const scenesState = atomWithStorage<Scene[]>("scenes", [])
 export const nowStyleState = atomWithStorage<NowStylePattern>("nowStyle", "style1")
+export const selectedSceneState = atomWithStorage<Scene | null>("selectedScene", null)
 
 const Main: React.FC<{ lang: string }> = ({ lang }) => {
   console.log("render Main")
 
   const [scenes, setScenes] = useAtom(scenesState)
   const [nowStyle, setNowStyle] = useAtom(nowStyleState)
+  const [selectedScene, setSelectedScene] = useAtom(selectedSceneState)
 
   const handleRecord = () => {
     const item = {
@@ -49,6 +52,9 @@ const Main: React.FC<{ lang: string }> = ({ lang }) => {
 
       {/* <Now stylePattern={nowStyle} onClick={handleOnclickNow}></Now> */}
       <SceneList ></SceneList>
+
+      {/* 選択されたシーンがある場合、その詳細を表示 */}
+      {selectedScene && <SceneDetail scene={selectedScene} />}
 
       <div className="three wide column text-left mt-5">© 2023</div>
     </div>
