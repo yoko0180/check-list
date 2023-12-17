@@ -67,6 +67,13 @@ const SceneDetailEdit: React.FC<SceneDetailProps> = ({ scene }) => {
           )
         })}
       </div>
+
+      <div className="p-2">
+        <button className="bg-red-900 text-white p-1 rounded" onClick={() => {
+          const newScenes = scenes.filter(s => s.id !== scene.id);
+          setScenes(newScenes);
+        }}>シーン削除</button>
+      </div>
     </div>
   );
 };
