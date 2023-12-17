@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Scene } from "../types";
 import { useAtom } from "jotai"
 import { scenesState, selectedSceneState } from "./Main"
+import { ButtonList } from "./ButtonList";
 
 interface SceneDetailProps {
   scene: Scene;
@@ -40,11 +41,7 @@ const SceneDetail: React.FC<SceneDetailProps> = ({ scene }) => {
 
       {/* ここに他の詳細を表示する */}
       <div className="p-2">
-        <ul>
-          {scene.items.map((item) => (
-            <li key={item.id}>{item.text}</li>
-          ))}
-        </ul>
+        <ButtonList items={scene.items} onItemClick={() => {}} />
       </div>
     </div>
   );

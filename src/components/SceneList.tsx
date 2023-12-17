@@ -1,6 +1,7 @@
 import { useAtom } from "jotai"
 import { ItemView, Scene } from "../types"
 import { scenesState, selectedSceneState } from "./Main"
+import { ButtonList, ListItem } from "./ButtonList"
 
 export const SceneList: React.FC<{
 
@@ -12,8 +13,10 @@ export const SceneList: React.FC<{
     setScenes([])
   }
 
-  const handleSceneClick = (scene: Scene) => {
-    setSelectedScene(scene.id)
+  const handleSceneClick = (item: ListItem) => {
+    if ('id' in item) {
+      setSelectedScene(item.id)
+    }
   }
 
   return (
@@ -24,15 +27,7 @@ export const SceneList: React.FC<{
       <button className="bg-red-900 p-2 m-1 rounded " onClick={() => deleteAll()}>
         全件削除
       </button>
-      {scenes.map((item) => {
-        return (
-          <div key={item.id} className="m-2 border rounded flex items-center ">
-            <button className="bg-red-900 p-2 m-1 rounded w-full" onClick={() => handleSceneClick(item)}>
-              {item.text}
-            </button>
-          </div>
-        )
-      })}
+      <ButtonList items={scenes} onItemClick={handleSceneClick} />
     </div>
   )
 }
