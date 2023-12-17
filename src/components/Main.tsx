@@ -3,7 +3,6 @@ import { NowStylePattern, Time, ItemView, Scene } from "../types"
 import { SceneList } from "./SceneList"
 import { atomWithStorage } from "jotai/utils"
 import { atom, useAtom, useSetAtom, useAtomValue } from "jotai"
-import { Now } from "./Now"
 import { AddScene } from "./AddScene"
 import SceneDetail from './SceneDetail';
 
@@ -19,19 +18,7 @@ const Main: React.FC<{ lang: string }> = ({ lang }) => {
   const [selectedScene, setSelectedScene] = useAtom(selectedSceneState)
 
   const scene = scenes.find(s => s.id === selectedScene)
-  const handleRecord = () => {
-    const item = {
-      id: "time_" + Date.now(),
-      time: new Date(),
-    }
-    // setTimes((times) => times.concat([item]))
-  }
 
-
-  const handleOnclickNow = () => {
-    if (nowStyle === "style1") setNowStyle("style2")
-    if (nowStyle === "style2") setNowStyle("style1")
-  }
 
   return (
     <div className="App p-5">
