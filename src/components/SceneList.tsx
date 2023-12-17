@@ -13,7 +13,7 @@ export const SceneList: React.FC<{
   }
 
   const handleSceneClick = (scene: Scene) => {
-    setSelectedScene(scene)
+    setSelectedScene(scene.id)
   }
 
   return (

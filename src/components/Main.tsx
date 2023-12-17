@@ -9,7 +9,7 @@ import SceneDetail from './SceneDetail';
 
 export const scenesState = atomWithStorage<Scene[]>("scenes", [])
 export const nowStyleState = atomWithStorage<NowStylePattern>("nowStyle", "style1")
-export const selectedSceneState = atomWithStorage<Scene | null>("selectedScene", null)
+export const selectedSceneState = atomWithStorage<string | null>("selectedScene", null)
 
 const Main: React.FC<{ lang: string }> = ({ lang }) => {
   console.log("render Main")
@@ -18,6 +18,7 @@ const Main: React.FC<{ lang: string }> = ({ lang }) => {
   const [nowStyle, setNowStyle] = useAtom(nowStyleState)
   const [selectedScene, setSelectedScene] = useAtom(selectedSceneState)
 
+  const scene = scenes.find(s => s.id === selectedScene)
   const handleRecord = () => {
     const item = {
       id: "time_" + Date.now(),
@@ -54,7 +55,7 @@ const Main: React.FC<{ lang: string }> = ({ lang }) => {
       <SceneList ></SceneList>
 
       {/* 選択されたシーンがある場合、その詳細を表示 */}
-      {selectedScene && <SceneDetail scene={selectedScene} />}
+      {scene && <SceneDetail scene={scene} />}
 
       <div className="three wide column text-left mt-5">© 2023</div>
     </div>
