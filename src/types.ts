@@ -4,6 +4,7 @@ export type UseState<T> = [T, SetState<T>]
 export type ItemView = {
   id: string
   text: string
+  done: boolean
 }
 export type Scene = {
   id: string

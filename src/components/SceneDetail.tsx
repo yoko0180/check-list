@@ -24,7 +24,7 @@ const SceneDetail: React.FC<SceneDetailProps> = ({ scene }) => {
     // setItem("");
 
     if (!scene) return
-    const newScene = { ...scene, items: [...scene.items, { id: Date.now() + "", text: item }] };
+    const newScene = { ...scene, items: [...scene.items, { id: Date.now() + "", text: item, done: false }] };
     setScenes((scenes) => scenes.map((s) => (s.id === scene.id ? newScene : s)));
   };
 
@@ -41,7 +41,19 @@ const SceneDetail: React.FC<SceneDetailProps> = ({ scene }) => {
 
       {/* ここに他の詳細を表示する */}
       <div className="p-2">
-        <ButtonList items={scene.items} onItemClick={() => {}} />
+        {scene.items.map((item) => {
+          return (
+            <div key={item.id} className="m-2 border rounded flex items-center ">
+              <button className={`p-2 m-1 rounded w-full ${item.done ? "bg-green-500" : "bg-red-900"}`} onClick={() => {
+                const newItems = scene.items.map(i => i.id === item.id ? { ...i, done: !item.done } : i);
+                const newScene = { ...scene, items: newItems };
+                setScenes((scenes) => scenes.map((s) => (s.id === scene.id ? newScene : s)));
+              }}>
+                {item.text}
+              </button>
+            </div>
+          )
+        })}
       </div>
     </div>
   );
