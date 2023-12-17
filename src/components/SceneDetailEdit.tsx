@@ -26,7 +26,7 @@ const SceneDetailEdit: React.FC<SceneDetailProps> = ({ scene }) => {
   return (
     <div className="border rounded my-2 py-2">
       <div className="p-2 flex justify-between text-2xl">
-        <span>シーン編集：{scene.text}</span>
+        <span>シーン編集</span>
         <button onClick={() => {
           setSelectedSceneEdit(null) 
           setSelectedScene(scene.id)
@@ -35,6 +35,16 @@ const SceneDetailEdit: React.FC<SceneDetailProps> = ({ scene }) => {
       </div>
       
       <div className="p-2">
+        <div>シーン名</div>
+        <input type="text" className="border rounded p-1" value={scene.text} onChange={(e) => {
+          const newScene = { ...scene, text: e.target.value };
+          setScenes((scenes) => scenes.map((s) => (s.id === scene.id ? newScene : s)));
+        }} />
+
+      </div>
+
+      <div className="p-2">
+        <div>アイテム追加</div>
         <input type="text" className="border rounded p-1" placeholder="アイテムを追加" value={item} onChange={handleInputChange} />
         <button className="bg-blue-500 text-white p-1 rounded ml-2" onClick={handleAddClick}>追加</button>
       </div>

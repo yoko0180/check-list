@@ -8,39 +8,28 @@ interface SceneDetailProps {
 }
 
 const SceneDetail: React.FC<SceneDetailProps> = ({ scene }) => {
-  const [item, setItem] = useState("");
   const [scenes, setScenes] = useAtom(scenesState)
   const [selectedScene, setSelectedScene] = useAtom(selectedSceneState);
   const [selectedSceneEdit, setSelectedSceneEdit] = useAtom(selectedSceneEditState);
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setItem(event.target.value);
-  };
-
-  const handleAddClick = () => {
-    if (!scene) return
-    const newScene = { ...scene, items: [...scene.items, { id: Date.now() + "", text: item, done: false }] };
-    setScenes((scenes) => scenes.map((s) => (s.id === scene.id ? newScene : s)));
-  };
 
   return (
     <div className="border rounded my-2 py-2">
-      <div className="p-2 flex justify-between text-2xl">
-        <span>シーン詳細：{scene.text}</span>
-        <button onClick={() => {
-          setSelectedSceneEdit(scene.id) 
-          setSelectedScene(null)
-          }}>編集</button>
-        <button onClick={() => {
-          setSelectedSceneEdit(null) 
-          setSelectedScene(null)
-          }}>閉じる</button>
-      </div>
-      
-      <div className="p-2">
-        <input type="text" className="border rounded p-1" placeholder="アイテムを追加" value={item} onChange={handleInputChange} />
-        <button className="bg-blue-500 text-white p-1 rounded ml-2" onClick={handleAddClick}>追加</button>
+      <div className="p-2 flex justify-between">
+        <span>シーン詳細</span>
       </div>
 
+      <div>
+        <button className="bg-sky-600 p-1 m-1 rounded" onClick={() => {
+            setSelectedSceneEdit(scene.id) 
+            setSelectedScene(null)
+            }}>編集</button>
+          <button className="bg-sky-600 p-1 m-1 rounded" onClick={() => {
+            setSelectedSceneEdit(null) 
+            setSelectedScene(null)
+            }}>閉じる</button>
+      </div>
+      
+      <h1 className="p-2 flex justify-center text-2xl">{scene.text}</h1>
       <div className="p-2">
         {scene.items.map((item) => {
           return (
