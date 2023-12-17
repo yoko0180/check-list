@@ -30,6 +30,10 @@ const SceneDetail: React.FC<SceneDetailProps> = ({ scene }) => {
           setSelectedSceneEdit(scene.id) 
           setSelectedScene(null)
           }}>編集</button>
+        <button onClick={() => {
+          setSelectedSceneEdit(null) 
+          setSelectedScene(null)
+          }}>閉じる</button>
       </div>
       
       <div className="p-2">

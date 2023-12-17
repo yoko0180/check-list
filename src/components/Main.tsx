@@ -33,17 +33,7 @@ const Main: React.FC<{ lang: string }> = ({ lang }) => {
         <span>ver {pkg.version}</span>
       </div>
 
-      <button className="bg-red-900 p-2 m-1 rounded " onClick={() => {}}>
-        シーン登録
-      </button>
-
-      <AddScene></AddScene>
-
-      {/* シーンを一覧表示する
-    　シーンを選択するとそのアイテム一覧を表示する */}
-
-      {/* <Now stylePattern={nowStyle} onClick={handleOnclickNow}></Now> */}
-      <SceneList ></SceneList>
+      {!scene && !sceneEdit && <SceneList ></SceneList>}
 
       {/* 選択されたシーンがある場合、その詳細を表示 */}
       {scene && <SceneDetail scene={scene} />}

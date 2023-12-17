@@ -8,10 +8,9 @@ export const AddScene: React.FC<{}> = ({}) => {
 
   const [text, setText] = useState("")
   return (
-    <div id="time-list" className="border rounded my-2 py-2">
-      <h1 className="p-2 justify-between text-2xl">シーン登録</h1>
+    <div id="time-list" className="border rounded my-2 p-2">
+      <h4 className="p-2 justify-between">シーン登録</h4>
       <div className="">
-        <label htmlFor="">title</label>
         <input
           type="text"
           className="border rounded py-2 px-3 "
