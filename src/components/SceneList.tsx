@@ -36,7 +36,7 @@ export const SceneList: React.FC<{}> = ({}) => {
       {scenes.map((item) => {
         return (
           <div key={item.id} className="m-2 border rounded flex items-center ">
-            <button className="bg-teal-600 p-2 m-1 rounded w-full" onClick={() => handleSceneClick(item)}>
+            <button className="bg-teal-800 p-2 m-1 rounded w-full" onClick={() => handleSceneClick(item)}>
               {item.text}
             </button>
           </div>
