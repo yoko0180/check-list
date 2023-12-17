@@ -26,13 +26,7 @@ export const AddScene: React.FC<{}> = ({}) => {
           登録
         </button>
       </div>
-      {scenes.map((item) => {
-        return (
-          <div key={item.id} className="m-2 border rounded flex items-center ">
-            <button className="bg-red-900 p-2 m-1 rounded w-full">{item.text}</button>
-          </div>
-        )
-      })}
+
     </div>
   )
 }

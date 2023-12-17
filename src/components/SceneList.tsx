@@ -3,8 +3,8 @@ import { ItemView, Scene } from "../types"
 import { scenesState } from "./Main"
 
 export const SceneList: React.FC<{
-  onClickDel: (time: Scene) => void
-}> = ({ onClickDel }) => {
+
+}> = ({  }) => {
   const [scenes, setScenes] = useAtom(scenesState)
   const deleteAll = () => {
     setScenes([])
@@ -21,7 +21,7 @@ export const SceneList: React.FC<{
       {scenes.map((item) => {
         return (
           <div key={item.id} className="m-2 border rounded flex items-center ">
-            <button className="bg-red-900 p-2 m-1 rounded w-full" onClick={() => onClickDel(item)}>
+            <button className="bg-red-900 p-2 m-1 rounded w-full" >
               {item.text}
             </button>
           </div>

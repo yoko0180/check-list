@@ -23,9 +23,6 @@ const Main: React.FC<{ lang: string }> = ({ lang }) => {
     // setTimes((times) => times.concat([item]))
   }
 
-  const handleOnclickDel = (scene: Scene) => {
-    setScenes(scenes.filter((i) => i.id !== scene.id))
-  }
 
   const handleOnclickNow = () => {
     if (nowStyle === "style1") setNowStyle("style2")
@@ -51,7 +48,7 @@ const Main: React.FC<{ lang: string }> = ({ lang }) => {
     　シーンを選択するとそのアイテム一覧を表示する */}
 
       {/* <Now stylePattern={nowStyle} onClick={handleOnclickNow}></Now> */}
-      <SceneList onClickDel={handleOnclickDel}></SceneList>
+      <SceneList ></SceneList>
 
       <div className="three wide column text-left mt-5">© 2023</div>
     </div>
