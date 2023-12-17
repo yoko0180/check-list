@@ -42,14 +42,17 @@ const SceneDetailEdit: React.FC<SceneDetailProps> = ({ scene }) => {
       <div className="p-2">
         {scene.items.map((item) => {
           return (
-            <div key={item.id} className="m-2 border rounded flex items-center ">
-              <button className={`p-2 m-1 rounded w-full ${item.done ? "bg-green-500" : "bg-red-900"}`} onClick={() => {
-                const newItems = scene.items.map(i => i.id === item.id ? { ...i, done: !item.done } : i);
+            <div key={item.id} className="m-2 p-2 border rounded flex items-center ">
+              <input className="border rounded p-1" type="text" value={item.text} onChange={(e) => {
+                const newItems = scene.items.map(i => i.id === item.id ? { ...i, text: e.target.value } : i);
                 const newScene = { ...scene, items: newItems };
                 setScenes((scenes) => scenes.map((s) => (s.id === scene.id ? newScene : s)));
-              }}>
-                {item.text}
-              </button>
+              }} />
+              <button className="mx-2 bg-red-900 p-2 rounded" onClick={() => {
+                const newItems = scene.items.filter(i => i.id !== item.id);
+                const newScene = { ...scene, items: newItems };
+                setScenes((scenes) => scenes.map((s) => (s.id === scene.id ? newScene : s)));
+              }}>削除</button>
             </div>
           )
         })}
