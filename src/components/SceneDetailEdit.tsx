@@ -73,13 +73,13 @@ const SceneDetailEdit: React.FC<SceneDetailProps> = ({ scene }) => {
       
       <div className="p-2">
         <div>シーン名</div>
-        <input type="text" className="border rounded p-1" value={scene.text} onChange={handleSceneNameChange} />
+        <input type="text" className="border rounded p-1 w-full" value={scene.text} onChange={handleSceneNameChange} />
       </div>
 
       <div className="p-2">
-        <div>アイテム追加</div>
-        <input type="text" className="border rounded p-1" placeholder="アイテムを追加" value={item} onChange={handleInputChange} />
-        <button className="bg-blue-500 text-white p-1 rounded ml-2" onClick={handleAddClick}>追加</button>
+        <div className="w-full">アイテム追加</div>
+        <input type="text" className="border rounded p-1 w-4/5" placeholder="アイテムを追加" value={item} onChange={handleInputChange} />
+        <button className="bg-blue-500 text-white p-1 ml-1 rounded w-1/6" onClick={handleAddClick}>追加</button>
       </div>
 
       <div className="p-2">
