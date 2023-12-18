@@ -12,7 +12,8 @@
     "dev:build:tailwind": "tailwindcss -i ./src/style.css -o ./src/post.css",
     "dev:build:tailwind:watch": "tailwindcss -i ./src/style.css -o ./src/post.css --watch",
     "dev:build:tailwind-prod": "set NODE_ENV=production tailwindcss build src/style.css -o src/post.css",
-    "version-up-minor": "node release/version-up.js",
+    "version": "node release/version-up.js && git add . && npm run build-deploy",
+    "postversion": "git push && git push --tags",
     "build:css": "postcss src/style.css -o src/post.css",
     "build:css-prod": "set NODE_ENV=production postcss src/style.css -o src/post.css",
     "build:react": "react-scripts build",
@@ -70,6 +71,7 @@
     "workbox-streams": "^6.5.3"
   },
   "devDependencies": {
+    "@types/": "testing-library/user-event",
     "@types/react-copy-to-clipboard": "^5.0.0",
     "@types/react-router-dom": "^5.3.3",
     "autoprefixer": "^10.2.5",
