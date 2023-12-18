@@ -21,6 +21,7 @@ const SceneDetailEdit: React.FC<SceneDetailProps> = ({ scene }) => {
     if (!scene) return
     const newScene = { ...scene, items: [...scene.items, { id: Date.now() + "", text: item, done: false }] };
     setScenes((scenes) => scenes.map((s) => (s.id === scene.id ? newScene : s)));
+    setItem("");
   };
 
   const handleCompleteClick = () => {
