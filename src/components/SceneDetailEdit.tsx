@@ -22,6 +22,7 @@ const SceneDetailEdit: React.FC<SceneDetailProps> = ({ scene }) => {
     const newScene = { ...scene, items: [...scene.items, { id: Date.now() + "", text: item, done: false }] };
     setScenes((scenes) => scenes.map((s) => (s.id === scene.id ? newScene : s)));
     setItem("");
+    document.getElementById("add-item")!.focus();
   };
 
   const handleCompleteClick = () => {
@@ -79,7 +80,7 @@ const SceneDetailEdit: React.FC<SceneDetailProps> = ({ scene }) => {
 
       <div className="p-2">
         <div className="w-full">アイテム追加</div>
-        <input type="text" className="border rounded p-1 w-4/5" placeholder="アイテムを追加" value={item} onChange={handleInputChange} />
+        <input id="add-item" type="text" className="border rounded p-1 w-4/5" placeholder="アイテムを追加" value={item} onChange={handleInputChange} />
         <button className="bg-blue-500 text-white p-1 ml-1 rounded w-1/6" onClick={handleAddClick}>追加</button>
       </div>
 
