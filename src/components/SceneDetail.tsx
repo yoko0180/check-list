@@ -51,7 +51,7 @@ const SceneDetail: React.FC<SceneDetailProps> = ({ scene }) => {
         })}
       </div>
       {scene.items.every(item => item.done) && (
-        <div className="text-2xl bg-green-600 text-center">完了👍</div>
+        <div className="text-2xl bg-green-500 text-center rounded mx-2">チェック完了👍</div>
       )}
     </div>
   );

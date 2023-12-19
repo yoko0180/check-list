@@ -64,7 +64,7 @@ const SceneDetailOneByOne: React.FC<SceneDetailProps> = ({ scene }) => {
             {item.text}
           </button>
         ) : (
-          <div className="text-2xl bg-green-600 text-center">チェック完了👍</div>
+          <div className="text-2xl bg-green-500 text-center rounded">チェック完了👍</div>
         )}
       </div>
 
