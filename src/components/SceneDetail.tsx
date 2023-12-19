@@ -34,7 +34,7 @@ const SceneDetail: React.FC<SceneDetailProps> = ({ scene }) => {
         {scene.items.map((item) => {
           return (
             <div key={item.id} className="m-2 border rounded flex items-center ">
-              <button className={`p-2 m-1 rounded w-full ${item.done ? "bg-green-500" : "bg-red-900"}`} onClick={() => {
+              <button className={`text-2xl p-2 m-1 rounded w-full ${item.done ? "bg-green-500" : "bg-red-900"}`} onClick={() => {
                 const newItems = scene.items.map(i => i.id === item.id ? { ...i, done: !item.done } : i);
                 const newScene = { ...scene, items: newItems };
                 setScenes((scenes) => scenes.map((s) => (s.id === scene.id ? newScene : s)));
