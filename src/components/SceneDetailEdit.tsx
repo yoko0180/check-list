@@ -51,6 +51,17 @@ const SceneDetailEdit: React.FC<SceneDetailProps> = ({ scene }) => {
     }
   };
 
+  const handleItemMoveTopClick = (itemId: string) => {
+    const index = scene.items.findIndex(i => i.id === itemId);
+    if (index > 0) {
+      const newItems = [...scene.items];
+      const item = newItems.splice(index, 1)[0];
+      newItems.unshift(item);
+      const newScene = { ...scene, items: newItems };
+      setScenes((scenes) => scenes.map((s) => (s.id === scene.id ? newScene : s)));
+    }
+  };
+
   const handleItemMoveDownClick = (itemId: string) => {
     const index = scene.items.findIndex(i => i.id === itemId);
     if (index < scene.items.length - 1) {
@@ -98,6 +109,7 @@ const SceneDetailEdit: React.FC<SceneDetailProps> = ({ scene }) => {
               <div className="item-buttons mt-1 flex justify-between">
                 <button className=" bg-red-900 p-2 rounded" onClick={() => handleItemDeleteClick(item.id)}>削</button>
                 <div className="up-down">
+                  <button disabled={disabledUp} className={`mx-1 bg-blue-500 p-2 px-5 rounded ${disabledUp ? 'disabled:opacity-50' : ''}`} onClick={() => handleItemMoveTopClick(item.id)}>🔝</button>
                   <button disabled={disabledUp} className={`mx-1 bg-blue-500 p-2 px-5 rounded ${disabledUp ? 'disabled:opacity-50' : ''}`} onClick={() => handleItemMoveUpClick(item.id)}>上</button>
                   <button disabled={disabledDown} className={`mx-1 bg-blue-500 p-2 px-5 rounded ${disabledDown ? 'disabled:opacity-50' : ''}`} onClick={() => handleItemMoveDownClick(item.id)}>下</button>
                 </div>
