@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Scene } from "../types";
 import { useAtom } from "jotai"
-import { scenesState, selectedSceneEditState, selectedSceneState } from "./Main"
+import { scenesState, selectedSceneEditState, selectedSceneOneByOneState, selectedSceneState } from "./Main"
 
 interface SceneDetailProps {
   scene: Scene;
@@ -10,6 +10,7 @@ interface SceneDetailProps {
 const SceneDetail: React.FC<SceneDetailProps> = ({ scene }) => {
   const [scenes, setScenes] = useAtom(scenesState)
   const [selectedScene, setSelectedScene] = useAtom(selectedSceneState);
+  const [selectedSceneOneByOne, setSelectedSceneOneByOne] = useAtom(selectedSceneOneByOneState);
   const [selectedSceneEdit, setSelectedSceneEdit] = useAtom(selectedSceneEditState);
 
   return (
@@ -18,15 +19,28 @@ const SceneDetail: React.FC<SceneDetailProps> = ({ scene }) => {
         <span>シーン詳細</span>
       </div>
 
-      <div>
-        <button className="bg-sky-600 p-1 m-1 rounded" onClick={() => {
-            setSelectedSceneEdit(scene.id) 
-            setSelectedScene(null)
-            }}>編集</button>
+      <div className="flex justify-between">
+        
+        <div className="left">
           <button className="bg-sky-600 p-1 m-1 rounded" onClick={() => {
-            setSelectedSceneEdit(null) 
-            setSelectedScene(null)
-            }}>閉じる</button>
+              setSelectedSceneEdit(scene.id)
+              setSelectedScene(null)
+              setSelectedSceneOneByOne(null)
+              }}>編集</button>
+          <button className="bg-sky-600 p-1 m-1 rounded" onClick={() => {
+              setSelectedSceneEdit(null)
+              setSelectedScene(null)
+              setSelectedSceneOneByOne(null)
+              }}>閉じる</button>
+        </div>
+        <div className="right">
+          <button className="bg-sky-600 p-1 m-1 rounded" onClick={() => {
+              setSelectedSceneEdit(null)
+              setSelectedScene(null)
+              setSelectedSceneOneByOne(scene.id)
+            }}>one</button>
+
+        </div>
       </div>
       
       <h1 className="p-2 flex justify-center text-2xl">{scene.text}</h1>
