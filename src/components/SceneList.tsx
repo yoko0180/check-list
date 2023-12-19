@@ -23,12 +23,6 @@ export const SceneList: React.FC<{}> = ({}) => {
       <div className="p-2 flex justify-between text-2xl">
         <span>シーン一覧({scenes.length}件)</span>
       </div>
-      <button
-        className="bg-red-900 p-2 m-1 rounded "
-        onClick={() => deleteAll()}
-      >
-        全件削除
-      </button>
       <div className="p-2">
         <AddScene></AddScene>
       </div>
@@ -36,12 +30,22 @@ export const SceneList: React.FC<{}> = ({}) => {
       {scenes.map((item) => {
         return (
           <div key={item.id} className="m-2 border rounded flex items-center ">
-            <button className="bg-teal-800 p-2 m-1 rounded w-full" onClick={() => handleSceneClick(item)}>
+            <button
+              className="bg-teal-800 p-2 m-1 rounded w-full"
+              onClick={() => handleSceneClick(item)}
+            >
               {item.text}
             </button>
           </div>
         )
       })}
+
+      <button
+        className="bg-black text-red-600 font-bold p-2 m-1 rounded mt-12"
+        onClick={() => deleteAll()}
+      >
+        全件削除
+      </button>
     </div>
   )
 }

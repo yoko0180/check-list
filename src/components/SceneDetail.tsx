@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Scene } from "../types";
 import { useAtom } from "jotai"
 import { scenesState, selectedSceneEditState, selectedSceneOneByOneState, selectedSceneState } from "./Main"
-import SceneDetailMenu from "./SceneDetailMenu";
+import SceneDetailMenu, { MenuButton } from "./SceneDetailMenu";
 
 interface SceneDetailProps {
   scene: Scene;
@@ -21,8 +21,7 @@ const SceneDetail: React.FC<SceneDetailProps> = ({ scene }) => {
       </div>
 
       <SceneDetailMenu scene={scene}>
-        <button
-          className="bg-sky-600 p-1 m-1 rounded"
+        <MenuButton
           onClick={() => {
             setSelectedSceneEdit(null)
             setSelectedScene(null)
@@ -30,7 +29,7 @@ const SceneDetail: React.FC<SceneDetailProps> = ({ scene }) => {
           }}
         >
           1件表示
-        </button>
+        </MenuButton>
       </SceneDetailMenu>
 
       

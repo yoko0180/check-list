@@ -13,6 +13,16 @@ interface SceneDetailProps {
   children?: React.ReactNode // children property added
 }
 
+export const MenuButton: React.FC<{ onClick: () => void, children: React.ReactNode }> = ({ onClick, children }) => {
+  return (
+    <button className="bg-sky-600 p-2 m-1 rounded" onClick={onClick}>
+      {children}
+    </button>
+  )
+}
+
+
+
 const SceneDetailMenu: React.FC<SceneDetailProps> = ({ scene, children }) => {
   const [scenes, setScenes] = useAtom(scenesState)
   const [selectedScene, setSelectedScene] = useAtom(selectedSceneState)
@@ -24,33 +34,27 @@ const SceneDetailMenu: React.FC<SceneDetailProps> = ({ scene, children }) => {
   )
   return (
     <div className="menu flex justify-between">
-      <div className="left">
-        <button
-          className="bg-sky-600 p-1 m-1 rounded"
-          onClick={() => {
+      <div className="left"></div>
+      <div className="right">
+        <MenuButton onClick={() => {
             setSelectedSceneEdit(scene.id)
             setSelectedScene(null)
             setSelectedSceneOneByOne(null)
           }}
         >
           編集
-        </button>
-        <button
-          className="bg-sky-600 p-1 m-1 rounded"
-          onClick={() => {
+        </MenuButton>
+        <MenuButton onClick={() => {
             setSelectedSceneEdit(null)
             setSelectedScene(null)
             setSelectedSceneOneByOne(null)
           }}
         >
           閉じる
-        </button>
-      </div>
-      <div className="right">
+        </MenuButton>
+
         {children}
-        <button
-          className="bg-sky-600 p-1 m-1 rounded"
-          onClick={() => {
+        <MenuButton onClick={() => {
             const newItems = scene.items.map((i) => ({ ...i, done: false }))
             const newScene = { ...scene, items: newItems }
             setScenes((scenes) =>
@@ -59,9 +63,7 @@ const SceneDetailMenu: React.FC<SceneDetailProps> = ({ scene, children }) => {
           }}
         >
           リセット
-        </button>
-
-
+        </MenuButton>
       </div>
     </div>
   )
