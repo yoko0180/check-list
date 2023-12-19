@@ -16,9 +16,9 @@ const SceneDetailOneByOne: React.FC<SceneDetailProps> = ({ scene }) => {
   const item = scene.items.find(item => !item.done);
 
   return (
-    <div className="border rounded my-2 py-2">
+    <div className="border rounded my-2 py-2 h-full">
       <div className="p-2 flex justify-between">
-        <span>シーン詳細 one</span>
+        <span>シーン詳細</span>
       </div>
 
       <SceneDetailMenu scene={scene}>
@@ -30,7 +30,7 @@ const SceneDetailOneByOne: React.FC<SceneDetailProps> = ({ scene }) => {
             setSelectedSceneOneByOne(null)
           }}
         >
-          list
+          一覧表示
         </button>
       </SceneDetailMenu>
 
@@ -46,10 +46,11 @@ const SceneDetailOneByOne: React.FC<SceneDetailProps> = ({ scene }) => {
         <span className="font-bold text-2xl mx-2">{scene.items.length}</span>
       </div>
 
-      <div className="p-2">
+      <div className="p-2 h-full" >
         {item ? (
           <button
-            className={`text-2xl p-2 rounded w-full bg-red-900 h-40`}
+            className={`text-2xl p-2 rounded w-full bg-red-900`}
+            style={{ height: '30vh' }}
             onClick={() => {
               const newItems = scene.items.map((i) =>
                 i.id === item.id ? { ...i, done: !item.done } : i

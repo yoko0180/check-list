@@ -29,7 +29,7 @@ const Main: React.FC<{ lang: string }> = ({ lang }) => {
 
 
   return (
-    <div className="App p-5">
+    <div className="App p-5" style={{ height: '80vh' }}>
       <div id="title" className="flex items-center text-xs">
         <h1 className="p-1 text-center" id="title">
           チェックリスト

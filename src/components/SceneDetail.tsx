@@ -29,7 +29,7 @@ const SceneDetail: React.FC<SceneDetailProps> = ({ scene }) => {
             setSelectedSceneOneByOne(scene.id)
           }}
         >
-          one
+          1件表示
         </button>
       </SceneDetailMenu>
 
