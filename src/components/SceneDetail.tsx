@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Scene } from "../types";
 import { useAtom } from "jotai"
 import { scenesState, selectedSceneEditState, selectedSceneOneByOneState, selectedSceneState } from "./Main"
+import SceneDetailMenu from "./SceneDetailMenu";
 
 interface SceneDetailProps {
   scene: Scene;
@@ -19,29 +20,19 @@ const SceneDetail: React.FC<SceneDetailProps> = ({ scene }) => {
         <span>シーン詳細</span>
       </div>
 
-      <div className="flex justify-between">
-        
-        <div className="left">
-          <button className="bg-sky-600 p-1 m-1 rounded" onClick={() => {
-              setSelectedSceneEdit(scene.id)
-              setSelectedScene(null)
-              setSelectedSceneOneByOne(null)
-              }}>編集</button>
-          <button className="bg-sky-600 p-1 m-1 rounded" onClick={() => {
-              setSelectedSceneEdit(null)
-              setSelectedScene(null)
-              setSelectedSceneOneByOne(null)
-              }}>閉じる</button>
-        </div>
-        <div className="right">
-          <button className="bg-sky-600 p-1 m-1 rounded" onClick={() => {
-              setSelectedSceneEdit(null)
-              setSelectedScene(null)
-              setSelectedSceneOneByOne(scene.id)
-            }}>one</button>
+      <SceneDetailMenu scene={scene}>
+        <button
+          className="bg-sky-600 p-1 m-1 rounded"
+          onClick={() => {
+            setSelectedSceneEdit(null)
+            setSelectedScene(null)
+            setSelectedSceneOneByOne(scene.id)
+          }}
+        >
+          one
+        </button>
+      </SceneDetailMenu>
 
-        </div>
-      </div>
       
       <h1 className="p-2 flex justify-center text-2xl">{scene.text}</h1>
       <div className="p-2">

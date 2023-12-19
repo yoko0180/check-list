@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Scene } from "../types";
 import { useAtom } from "jotai"
 import { scenesState, selectedSceneEditState, selectedSceneOneByOneState, selectedSceneState } from "./Main"
+import SceneDetailMenu from "./SceneDetailMenu";
 
 interface SceneDetailProps {
   scene: Scene;
@@ -20,37 +21,18 @@ const SceneDetailOneByOne: React.FC<SceneDetailProps> = ({ scene }) => {
         <span>シーン詳細 one</span>
       </div>
 
-      <div className="flex justify-between">
-        
-        <div className="left">
-          <button className="bg-sky-600 p-1 m-1 rounded" onClick={() => {
-              setSelectedSceneEdit(scene.id)
-              setSelectedScene(null)
-              setSelectedSceneOneByOne(null)
-              }}>編集</button>
-          <button className="bg-sky-600 p-1 m-1 rounded" onClick={() => {
-              setSelectedSceneEdit(null)
-              setSelectedScene(null)
-              setSelectedSceneOneByOne(null)
-              }}>閉じる</button>
-        </div>
-        <div className="right">
-          <button className="bg-sky-600 p-1 m-1 rounded" onClick={() => {
-              const newItems = scene.items.map(i => ({ ...i, done: false }));
-              const newScene = { ...scene, items: newItems };
-              setScenes((scenes) => scenes.map((s) => (s.id === scene.id ? newScene : s)));
-            }}>リセット</button>
-
-          
-          <button className="bg-sky-600 p-1 m-1 rounded" onClick={() => {
-              setSelectedSceneEdit(null)
-              setSelectedScene(scene.id)
-              setSelectedSceneOneByOne(null)
-            }}>list</button>
-
-        </div>
-      </div>
-
+      <SceneDetailMenu scene={scene}>
+        <button
+          className="bg-sky-600 p-1 m-1 rounded"
+          onClick={() => {
+            setSelectedSceneEdit(null)
+            setSelectedScene(scene.id)
+            setSelectedSceneOneByOne(null)
+          }}
+        >
+          list
+        </button>
+      </SceneDetailMenu>
 
       <h1 className="p-2 flex justify-center text-2xl">{scene.text}</h1>
       {/* <h2 className="index">{index+1} / {scene.items.length}</h2> */}
@@ -81,7 +63,7 @@ const SceneDetailOneByOne: React.FC<SceneDetailProps> = ({ scene }) => {
             {item.text}
           </button>
         ) : (
-          <div className="text-2xl bg-green-600">チェック完了👍</div>
+          <div className="text-2xl bg-green-600 text-center">チェック完了👍</div>
         )}
       </div>
 
