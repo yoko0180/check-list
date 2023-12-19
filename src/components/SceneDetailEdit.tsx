@@ -108,7 +108,7 @@ const SceneDetailEdit: React.FC<SceneDetailProps> = ({ scene }) => {
       </div>
 
       <div className="p-2">
-        <button className="bg-red-900 text-white p-1 rounded" onClick={handleSceneDeleteClick}>シーン削除</button>
+        <button className="bg-black text-red-600 font-bold p-2 rounded" onClick={handleSceneDeleteClick}>シーン削除</button>
       </div>
     </div>
   );
