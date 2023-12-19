@@ -1,7 +1,7 @@
 /// <reference lib="webworker" />
 /* eslint-disable no-restricted-globals */
 
-// ver: 0.5.1
+// ver: 0.5.2
 
 // This service worker can be customized!
 // See https://developers.google.com/web/tools/workbox/modules

@@ -1,6 +1,6 @@
 {
   "name": "check-list",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "private": true,
   "scripts": {
     "start": "react-scripts start",
